@@ -25,8 +25,8 @@ def test_sanity_encode(integer: int, expected_encoding: str):
         f'{integer=}, {expected_encoding=}, {actual_encoding=}'
 
 
-@pytest.mark.parametrize('integer,expected_decoding', DECODING_EXAMPLES)
-def test_sanity_decode(integer: int, expected_decoding: str):
+@pytest.mark.parametrize('roman_number,expected_decoding', DECODING_EXAMPLES)
+def test_sanity_decode(roman_number: str, expected_decoding: int):
     """ Test roman decoding scenarios, conversion from Roman numerals values to integer values """
     actual_decoding = roman_decode(integer)
     assert actual_decoding == expected_decoding, \
@@ -50,11 +50,11 @@ def test_unsupported_negative():
         pass
 
 
-@pytest.mark.parametrize('illegal_roman_strings', ('a', 'IV9', 'CM<'))
-def test_illegal_decode(illegal_roman_strings):
+@pytest.mark.parametrize('illegal_roman_string', ('a', 'IV9', 'CM<'))
+def test_illegal_decode(illegal_roman_string: str):
     """ Test illegal values for decoding failures """
     try:
-        roman_decode(illegal_roman_strings)
+        roman_decode(illegal_roman_string)
     except KeyError:
         pass
 
